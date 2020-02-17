@@ -2,11 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>_groupId</groupId>
-	<artifactId>_artifactId</artifactId>
+	<groupId>org.silentsoft</groupId>
+	<artifactId>actlist-innorules-ruletrace-converter-plugin</artifactId>
 	<version>1.0.0</version>
 	<properties>
-		<mainClass>starter.Plugin</mainClass>
+		<mainClass>Plugin</mainClass>
 	</properties>
 	<repositories>
 		<repository>

@@ -11,6 +11,7 @@
     - replace `<>` to ""
     - replace `<CR><LF>` to `:`
     - replace `STX` and `ETX` to `:`
+    - replace `&` to `&amp;`
   - Insert XML specification to first line if not exists.
   - Automatic conversion to specific directory every 5 seconds.
   - Automatic encoding detaction (`EUC-KR` or `UTF-8`)

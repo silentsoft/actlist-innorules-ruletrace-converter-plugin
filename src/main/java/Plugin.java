@@ -60,21 +60,6 @@ public class Plugin extends ActlistPlugin {
 
 	@Override
 	protected void initialize() throws Exception {
-		initConfig();
-		
-		{
-			String automaticConvertPath = getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH);
-			
-			boolean enabledAutomaticConvert = true;
-			if (automaticConvertPath == null || "".equals(automaticConvertPath.trim()) || Files.notExists(Paths.get(automaticConvertPath)) || Files.isDirectory(Paths.get(automaticConvertPath)) == false) {
-				enabledAutomaticConvert = false;
-			}
-			
-			automaticConvertPathLabel.setVisible(enabledAutomaticConvert);
-			automaticConvertPathLabel.setText(automaticConvertPath);
-			automaticConvertToggleButton.setSelected(enabledAutomaticConvert);
-		}
-		
 		automaticConvertToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
 			try {
 				if (newValue) {
@@ -101,6 +86,8 @@ public class Plugin extends ActlistPlugin {
 					
 					automaticConvertPathLabel.setVisible(false);
 				}
+				
+				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, newValue);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -135,20 +122,35 @@ public class Plugin extends ActlistPlugin {
 		});
 	}
 	
-	private void initConfig() throws Exception {
-		String automaticConvertPath = getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH);
-		if (automaticConvertPath == null || "".equals(automaticConvertPath.trim())) {
-			Path innorulesTracePath = Paths.get(PluginConst.DEFAULT_AUTOMATIC_CONVERT_PATH);
-			if (Files.exists(innorulesTracePath)) {
-				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH, PluginConst.DEFAULT_AUTOMATIC_CONVERT_PATH);
-			}
-		}
-	}
-
 	@Override
 	public void pluginActivated() throws Exception {
+		loadConfig();
+		
+		{
+			String automaticConvertPath = getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH);
+			boolean automaticConvertEnabled = getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED);
+			
+			automaticConvertPathLabel.setVisible(automaticConvertEnabled);
+			automaticConvertPathLabel.setText(automaticConvertPath);
+			automaticConvertToggleButton.setSelected(automaticConvertEnabled);
+		}
+		
 		if (automaticConvertToggleButton.isSelected()) {
 			startDirectoryObserverThread();
+		}
+	}
+	
+	private void loadConfig() throws Exception {
+		if (getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED) == null) {
+			putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, false);
+		}
+		
+		if (getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH) == null) {
+			Path innorulesTracePath = Paths.get(PluginConst.DEFAULT_AUTOMATIC_CONVERT_PATH);
+			if (Files.exists(innorulesTracePath) && Files.isDirectory(innorulesTracePath)) {
+				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH, PluginConst.DEFAULT_AUTOMATIC_CONVERT_PATH);
+				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, true);
+			}
 		}
 	}
 
@@ -219,6 +221,7 @@ public class Plugin extends ActlistPlugin {
 			directory = directoryChooser.showDialog(window);
 			if (directory != null) {
 				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH, directory.getAbsolutePath());
+				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, true);
 				
 				automaticConvertPathLabel.setText(directory.getAbsolutePath());
 			}

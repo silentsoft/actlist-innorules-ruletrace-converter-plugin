@@ -48,12 +48,12 @@ public class Plugin extends ActlistPlugin {
 	public Plugin() throws Exception {
 		super("InnoRules Ruletrace Converter");
 		
-		setPluginVersion("1.0.0");
+		setPluginVersion("1.1.0");
 		setPluginAuthor("silentsoft.org", URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin"));
 		setPluginUpdateCheckURI(URI.create("http://actlist.silentsoft.org/api/plugin/cc78cf69/update/check"));
 		setPluginDescription(URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/README.md"));
 		setPluginChangeLog(URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/CHANGELOG.md"));
-		setPluginLicense(URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt"));
+		setPluginLicense(URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/NOTICE.md"));
 		
 		setMinimumCompatibleVersion(1, 2, 6);
 	}

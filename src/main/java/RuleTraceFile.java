@@ -1,12 +1,17 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.io.IOUtils;
-import org.silentsoft.core.util.InetAddressUtil;
+
+import com.glaforge.i18n.io.CharsetToolkit;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -46,7 +51,7 @@ public class RuleTraceFile extends HBox {
 			try {
 				StringBuilder ruleXml = new StringBuilder();
 				
-				String encoding = determineEncoding();
+				Charset encoding = guessEncoding();
 				
 				try {
 					fileInputStream = new FileInputStream(file);
@@ -105,14 +110,10 @@ public class RuleTraceFile extends HBox {
 		}).start();
 	}
 	
-	private String determineEncoding() {
-		if (file.getName().contains(InetAddressUtil.getAddress())) {
-			return "utf-8";
-		}
-		
-		return "euc-kr";
+	private Charset guessEncoding() throws FileNotFoundException, IOException {
+		Charset charset = CharsetToolkit.guessEncoding(file, 4096, Charset.forName("EUC-KR"));
+		return Charset.forName("EUC-KR").equals(charset) ? charset : StandardCharsets.UTF_8;
 	}
-	
 	
 	private void markStatusAsInProgress() {
 		ProgressIndicator status = new ProgressIndicator(ProgressIndicator.INDETERMINATE_PROGRESS);

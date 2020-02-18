@@ -1,6 +1,6 @@
 # Innorules Ruletrace Converter
 
-![](https://img.shields.io/badge/release-v1.0.0-blue.svg)
+![](https://img.shields.io/badge/release-v1.1.0-blue.svg)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt)
 [![HitCount](http://hits.dwyl.io/silentsoft/actlist-innorules-ruletrace-converter-plugin.svg)](http://hits.dwyl.io/silentsoft/actlist-innorules-ruletrace-converter-plugin)
 
@@ -13,7 +13,7 @@
     - replace `STX` and `ETX` to `:`
   - Insert XML specification to first line if not exists.
   - Automatic conversion to specific directory every 5 seconds.
-  - Automatic encoding detaction (`utf-8` or `euc-kr`)
+  - Automatic encoding detaction (`EUC-KR` or `UTF-8`)
 
 ## Packaging
 ```
@@ -26,4 +26,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please note we have a [CODE_OF_CONDUCT](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ## License
-Please refer to [LICENSE](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt).
+Please refer to [LICENSE](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt) and [NOTICE](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/NOTICE.md).

@@ -48,7 +48,7 @@ public class Plugin extends ActlistPlugin {
 	public Plugin() throws Exception {
 		super("InnoRules Ruletrace Converter");
 		
-		setPluginVersion("1.2.0");
+		setPluginVersion("1.2.1");
 		setPluginAuthor("silentsoft.org", URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin"));
 		setPluginUpdateCheckURI(URI.create("http://actlist.silentsoft.org/api/plugin/cc78cf69/update/check"));
 		setPluginDescription(URI.create("https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/README.md"));
@@ -76,18 +76,20 @@ public class Plugin extends ActlistPlugin {
 					}
 					
 					if (shouldStartDirectoryObserverThread) {
+						putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, true);
+						
 						automaticConvertPathLabel.setVisible(true);
 						automaticConvertPathLabel.setText(getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH));
 						
 						startDirectoryObserverThread();
 					}
 				} else {
+					putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, false);
+					
 					stopDirectoryObserverThread();
 					
 					automaticConvertPathLabel.setVisible(false);
 				}
-				
-				putConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_ENABLED, newValue);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

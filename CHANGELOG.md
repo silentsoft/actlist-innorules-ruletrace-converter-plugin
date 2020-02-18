@@ -1,3 +1,7 @@
+## 1.2.1 (19 Feb 2020)
+  - ### Bug fixes
+    - Minor things
+
 ## 1.2.0 (19 Feb 2020)
   - ### New features
     - Convert `&` character to `&amp;`

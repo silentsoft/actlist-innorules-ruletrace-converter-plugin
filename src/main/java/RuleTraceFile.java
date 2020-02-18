@@ -73,17 +73,7 @@ public class RuleTraceFile extends HBox {
 							isFirstContent = false;
 						}
 						
-						content = content.replaceAll("<>", "");
-						content = content.replaceAll("<CR><LF>", ":");
-						
-						char[] charArray = content.toCharArray();
-						for (int i=0, j=charArray.length; i<j; i++) {
-							if (charArray[i] == PluginConst.STX || charArray[i] == PluginConst.ETX) {
-								charArray[i] = ':';
-							}
-						}
-
-						ruleXml.append(charArray);
+						ruleXml.append(RuleTraceUtil.convert(content));
 						ruleXml.append("\r\n");
 					}
 				} catch (Exception e) {

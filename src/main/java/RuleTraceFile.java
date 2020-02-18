@@ -58,21 +58,25 @@ public class RuleTraceFile extends HBox {
 					inputStreamReader = new InputStreamReader(fileInputStream, encoding);
 					bufferedReader = new BufferedReader(inputStreamReader);
 					
-					boolean isFirstLine = true;
-					String current;
-					while ((current = bufferedReader.readLine()) != null) {
-						if (isFirstLine) {
-							isFirstLine = false;
-							
-							if (current.startsWith("<?xml version=") == false) {
-								current = String.format("<?xml version=\"1.0\" encoding=\"%s\"?>\r\n%s", encoding, current);
+					boolean isFirstContent = true;
+					String content;
+					while ((content = bufferedReader.readLine()) != null) {
+						if (isFirstContent) {
+							if (content.length() == 0 || "".equals(content.trim())) {
+								continue;
 							}
+							
+							if (content.trim().startsWith("<?xml version=") == false) {
+								content = String.format("<?xml version=\"1.0\" encoding=\"%s\"?>\r\n%s", encoding, content);
+							}
+							
+							isFirstContent = false;
 						}
 						
-						current = current.replaceAll("<>", "");
-						current = current.replaceAll("<CR><LF>", ":");
+						content = content.replaceAll("<>", "");
+						content = content.replaceAll("<CR><LF>", ":");
 						
-						char[] charArray = current.toCharArray();
+						char[] charArray = content.toCharArray();
 						for (int i=0, j=charArray.length; i<j; i++) {
 							if (charArray[i] == PluginConst.STX || charArray[i] == PluginConst.ETX) {
 								charArray[i] = ':';

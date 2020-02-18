@@ -161,31 +161,31 @@ public class Plugin extends ActlistPlugin {
 		if (directoryObserverThread != null) {
 			directoryObserverThread.interrupt();
 		}
-		
+
 		directoryObserverThread = null;
 		directoryObserverThread = new Thread(() -> {
-			while (true) {
-				try {
-					Path automaticConvertPath = Paths.get((String) getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH));
-					if (Files.exists(automaticConvertPath)) {
-						List<Path> notConvertedRuleTraces = Files.walk(automaticConvertPath, 1)
-								.filter(path -> path.toString().toLowerCase().endsWith(".xml") && convertedTraces.contains(path.toString()) == false)
-								.collect(Collectors.toList());
-						notConvertedRuleTraces.forEach(path -> {
-							convertRuleTrace(path.toFile());
-							
-							convertedTraces.add(path.toString());
-						});
-					}
-				} catch (Throwable e) {
-					e.printStackTrace();
-				} finally {
+			try {
+				while (true) {
 					try {
-						Thread.sleep(TimeUnit.SECONDS.toMillis(5));
-					} catch (InterruptedException e) {
-						
+						Path automaticConvertPath = Paths.get((String) getConfig(PluginConst.CONFIG_KEY_AUTOMATIC_CONVERT_PATH));
+						if (Files.exists(automaticConvertPath)) {
+							List<Path> notConvertedRuleTraces = Files.walk(automaticConvertPath, 1)
+									.filter(path -> path.toString().toLowerCase().endsWith(".xml") && convertedTraces.contains(path.toString()) == false)
+									.collect(Collectors.toList());
+							notConvertedRuleTraces.forEach(path -> {
+								convertRuleTrace(path.toFile());
+								
+								convertedTraces.add(path.toString());
+							});
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
+					
+					Thread.sleep(TimeUnit.SECONDS.toMillis(5));
 				}
+			} catch (InterruptedException e) {
+				// expected exception.
 			}
 		});
 		directoryObserverThread.start();

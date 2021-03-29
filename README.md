@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/release-v1.2.1-blue.svg)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt)
-[![HitCount](http://hits.dwyl.io/silentsoft/actlist-innorules-ruletrace-converter-plugin.svg)](http://hits.dwyl.io/silentsoft/actlist-innorules-ruletrace-converter-plugin)
+[![HitCount](http://hits.dwyl.com/silentsoft/actlist-innorules-ruletrace-converter-plugin.svg)](http://hits.dwyl.com/silentsoft/actlist-innorules-ruletrace-converter-plugin)
 
 > Drag and drop your rule trace files to convert special delimiters.
 

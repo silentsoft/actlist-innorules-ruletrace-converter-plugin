@@ -1,6 +1,6 @@
 # Innorules Ruletrace Converter
 
-![](https://img.shields.io/badge/release-v1.2.1-blue.svg)
+[![release](https://shields.io/github/v/release/silentsoft/actlist-innorules-ruletrace-converter-plugin?display_name=tag)](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/releases)
 [![license](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin/blob/master/LICENSE.txt)
 [![Hits](https://hits.sh/github.com/silentsoft/actlist-innorules-ruletrace-converter-plugin.svg)](https://hits.sh)
 

@@ -1,3 +1,9 @@
+## 1.3.0 (22 Dec 2022)
+  - ### Changes ###
+    - Convert `STX(0x02)`, `EOT(0x04)`, `GS(0x1D)` and `RS(0x1E)` to `:`
+    - Convert `ETX(0x03)` and `<CR><LF>` to `;`
+    - Convert `<>` to `&lt;&gt;`
+
 ## 1.2.1 (19 Feb 2020)
   - ### Bug fixes
     - Minor things

@@ -8,9 +8,9 @@
 
 ## Features
   - Convert special delimiters on rule trace `.xml`.
-    - replace `<>` to ""
-    - replace `<CR><LF>` to `:`
-    - replace `STX` and `ETX` to `:`
+    - replace `STX(0x02)`, `EOT(0x04)`, `GS(0x1D)` and `RS(0x1E)` to `:`
+    - replace `ETX(0x03)` and `<CR><LF>` to `;`
+    - replace `<>` to `&lt;&gt;`
     - replace `&` to `&amp;`
   - Insert XML specification to first line if not exists.
   - Automatic conversion to specific directory every 5 seconds.
